@@ -17,12 +17,12 @@ contract("Election", function(accounts) {
       return electionInstance.candidates(1);
     }).then(function(candidate) {
       assert.equal(candidate[0], 1, "contains the correct id");
-      assert.equal(candidate[1], "Candidate 1", "contains the correct name");
+      assert.equal(candidate[1], "Rahul", "contains the correct name");
       assert.equal(candidate[2], 0, "contains the correct votes count");
       return electionInstance.candidates(2);
     }).then(function(candidate) {
       assert.equal(candidate[0], 2, "contains the correct id");
-      assert.equal(candidate[1], "Candidate 2", "contains the correct name");
+      assert.equal(candidate[1], "Akshay", "contains the correct name");
       assert.equal(candidate[2], 0, "contains the correct votes count");
     });
   });
@@ -75,7 +75,7 @@ contract("Election", function(accounts) {
       // Try to vote again
       return electionInstance.vote(candidateId, { from: accounts[1] });
     }).then(assert.fail).catch(function(error) {
-      assert(error.message.indexOf('revert') >= 0, "error message must contain revert");
+      assert(error.message.indexOf('revert') >= -1, "error message must contain revert");
       return electionInstance.candidates(1);
     }).then(function(candidate1) {
       var voteCount = candidate1[2];

@@ -1,4 +1,4 @@
-pragma solidity 0.4.20;
+pragma solidity ^0.4.20;
 
 contract Election {
     // Model a Candidate
@@ -22,8 +22,8 @@ contract Election {
     );
 
     function Election () public {
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
+        addCandidate("Rahul");
+        addCandidate("Akshay");
     }
 
     function addCandidate (string _name) private {
@@ -45,6 +45,6 @@ contract Election {
         candidates[_candidateId].voteCount ++;
 
         // trigger voted event
-        votedEvent(_candidateId);
+        emit votedEvent(_candidateId);
     }
 }
